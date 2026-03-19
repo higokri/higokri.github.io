@@ -170,19 +170,8 @@
     /* ── Publications ── */
     .pub-item {
       padding: 20px 0;
-      display: flex; gap: 16px; align-items: flex-start;
     }
     .pub-item + .pub-item { border-top: 1px solid var(--border); }
-    .pub-content { flex: 1; }
-    .pub-venue-badge {
-      display: inline-block; padding: 3px 10px; border-radius: 4px;
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.02em;
-      background: var(--primary); color: #fff; margin-bottom: 8px;
-      text-transform: uppercase;
-    }
-    .pub-venue-badge.journal { background: #2e7d32; }
-    .pub-venue-badge.domestic { background: #6a1b9a; }
-    .pub-venue-badge.oral { background: #e65100; }
     .pub-title-link {
       display: block;
       font-size: 1rem; font-weight: 700; color: var(--primary);
@@ -190,13 +179,20 @@
     }
     .pub-title-link:hover { text-decoration: underline; }
     .pub-authors {
-      font-size: 0.9rem; color: var(--text-light); margin-bottom: 2px;
+      font-size: 0.9rem; color: var(--text-light); margin-bottom: 4px;
     }
     .pub-authors strong { color: var(--text); font-weight: 700; }
-    .pub-venue-text {
-      font-size: 0.85rem; color: var(--text-muted); font-style: italic;
-      margin-bottom: 8px;
+    .pub-venue {
+      font-size: 0.9rem; font-weight: 700; margin-bottom: 8px;
     }
+    .pub-venue.conf { color: #1565c0; }
+    .pub-venue.journal { color: #2e7d32; }
+    .pub-venue.domestic { color: #6a1b9a; }
+    .pub-venue.oral { color: #e65100; }
+    [data-theme="dark"] .pub-venue.conf { color: #68b5ff; }
+    [data-theme="dark"] .pub-venue.journal { color: #66bb6a; }
+    [data-theme="dark"] .pub-venue.domestic { color: #ba68c8; }
+    [data-theme="dark"] .pub-venue.oral { color: #ff8a65; }
     .pub-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
     .pub-btn {
       display: inline-flex; align-items: center; gap: 4px;
@@ -217,6 +213,21 @@
       background: var(--bg-alt); color: var(--text); border-color: var(--border);
     }
     .pub-btn.code:hover { border-color: var(--primary); color: var(--primary); }
+
+    /* ── Toggle Button ── */
+    .toggle-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 20px; border-radius: 6px; font-size: 0.9rem; font-weight: 700;
+      background: var(--bg-alt); color: var(--text); border: 1px solid var(--border);
+      cursor: pointer; transition: all .2s; margin-top: 8px;
+    }
+    .toggle-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .toggle-btn i { transition: transform .3s; }
+    .toggle-btn.open i { transform: rotate(180deg); }
+    .full-pub-content {
+      max-height: 0; overflow: hidden; transition: max-height .4s ease;
+    }
+    .full-pub-content.open { max-height: 3000px; }
 
     /* ── Experience Timeline (Hugo Academic style) ── */
     .exp-grid {
@@ -389,116 +400,78 @@
       <h2 class="section-title">Selected Publications</h2>
       <p class="section-subtitle">* denotes equal contribution, &dagger; denotes corresponding author</p>
 
-      <!-- ICLR 2026 -->
       <div class="pub-item">
-        <div class="pub-content">
-          <span class="pub-venue-badge">ICLR 2026</span>
+        <a class="pub-title-link" href="https://openreview.net/forum?id=2NLkhPex1M" target="_blank">AgilePruner: An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning in Large Vision-Language Models</a>
+        <div class="pub-authors"><strong>C. Baek*</strong>, J. Song*, S. Kim*, K. Kong&dagger;</div>
+        <div class="pub-venue conf">ICLR 2026 &mdash; International Conference on Learning Representations, Apr. 2026</div>
+        <div class="pub-buttons">
+          <a class="pub-btn paper" href="https://openreview.net/forum?id=2NLkhPex1M" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+          <a class="pub-btn code" href="https://github.com/cvsp-lab/AgilePruner" target="_blank"><i class="fab fa-github"></i> Code</a>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <a class="pub-title-link" href="https://ieeexplore.ieee.org/document/11048580" target="_blank">Unsupervised Knowledge Distillation via Local Representations for Vision-Language Models</a>
+        <div class="pub-authors"><strong>C. Baek</strong>, J. Song, K. Kong&dagger;</div>
+        <div class="pub-venue journal">IEEE Signal Processing Letters, Aug. 2025</div>
+        <div class="pub-buttons">
+          <a class="pub-btn paper" href="https://ieeexplore.ieee.org/document/11048580" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+        </div>
+      </div>
+
+      <!-- Toggle for Full Publications -->
+      <button class="toggle-btn" id="fullPubToggle" onclick="toggleFullPub()">
+        <i class="fas fa-chevron-down"></i> Show Full Publications
+      </button>
+
+      <div class="full-pub-content" id="fullPubContent">
+        <h3 style="font-size:1rem; font-weight:700; color:var(--text); margin:24px 0 16px;">International Conferences</h3>
+
+        <div class="pub-item">
           <a class="pub-title-link" href="https://openreview.net/forum?id=2NLkhPex1M" target="_blank">AgilePruner: An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning in Large Vision-Language Models</a>
           <div class="pub-authors"><strong>C. Baek*</strong>, J. Song*, S. Kim*, K. Kong&dagger;</div>
-          <div class="pub-venue-text">International Conference on Learning Representations (ICLR), Apr. 2026</div>
+          <div class="pub-venue conf">ICLR 2026 &mdash; International Conference on Learning Representations, Apr. 2026</div>
           <div class="pub-buttons">
             <a class="pub-btn paper" href="https://openreview.net/forum?id=2NLkhPex1M" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
             <a class="pub-btn code" href="https://github.com/cvsp-lab/AgilePruner" target="_blank"><i class="fab fa-github"></i> Code</a>
           </div>
         </div>
-      </div>
-
-      <!-- IEEE SPL -->
-      <div class="pub-item">
-        <div class="pub-content">
-          <span class="pub-venue-badge journal">IEEE SPL</span>
-          <a class="pub-title-link" href="https://ieeexplore.ieee.org/document/11048580" target="_blank">Unsupervised Knowledge Distillation via Local Representations for Vision-Language Models</a>
-          <div class="pub-authors"><strong>C. Baek</strong>, J. Song, K. Kong&dagger;</div>
-          <div class="pub-venue-text">IEEE Signal Processing Letters, Aug. 2025</div>
-          <div class="pub-buttons">
-            <a class="pub-btn paper" href="https://ieeexplore.ieee.org/document/11048580" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- APCCAS 2025 -->
-      <div class="pub-item">
-        <div class="pub-content">
-          <span class="pub-venue-badge oral">APCCAS 2025 &middot; Oral</span>
+        <div class="pub-item">
           <a class="pub-title-link" href="#">Efficient Token Pruning for Vision-Language Models in Multi-turn Scenarios</a>
           <div class="pub-authors"><strong>C. Baek*</strong>, S. Kim*, J. Song*, K. Kong&dagger;</div>
-          <div class="pub-venue-text">Asia Pacific Conference on Circuits and Systems (APCCAS), 2025</div>
+          <div class="pub-venue oral">APCCAS 2025 (Oral) &mdash; Asia Pacific Conference on Circuits and Systems, 2025</div>
         </div>
-      </div>
-    </section>
-
-    <!-- ════════ Full Publications ════════ -->
-    <section class="section" id="publications">
-      <h2 class="section-title">Full Publications</h2>
-      <div class="callout">
-        <i class="fas fa-lightbulb"></i>&nbsp;
-        Quickly discover relevant content by <a href="https://scholar.google.co.kr/citations?user=4Xrc3r0AAAAJ&hl=ko&oi=ao" target="_blank">filtering publications</a>.
-      </div>
-
-      <h3 style="font-size:1rem; font-weight:700; color:var(--text); margin-bottom:16px;">International Conferences</h3>
-
-      <div class="pub-item">
-        <div class="pub-content">
-          <span class="pub-venue-badge">ICLR 2026</span>
-          <a class="pub-title-link" href="https://openreview.net/forum?id=2NLkhPex1M" target="_blank">AgilePruner: An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning in Large Vision-Language Models</a>
-          <div class="pub-authors"><strong>C. Baek*</strong>, J. Song*, S. Kim*, K. Kong&dagger;</div>
-          <div class="pub-venue-text">International Conference on Learning Representations (ICLR), Apr. 2026</div>
-          <div class="pub-buttons">
-            <a class="pub-btn paper" href="https://openreview.net/forum?id=2NLkhPex1M" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
-            <a class="pub-btn code" href="https://github.com/cvsp-lab/AgilePruner" target="_blank"><i class="fab fa-github"></i> Code</a>
-          </div>
-        </div>
-      </div>
-      <div class="pub-item">
-        <div class="pub-content">
-          <span class="pub-venue-badge oral">APCCAS 2025 &middot; Oral</span>
-          <a class="pub-title-link" href="#">Efficient Token Pruning for Vision-Language Models in Multi-turn Scenarios</a>
-          <div class="pub-authors"><strong>C. Baek*</strong>, S. Kim*, J. Song*, K. Kong&dagger;</div>
-          <div class="pub-venue-text">Asia Pacific Conference on Circuits and Systems (APCCAS), 2025</div>
-        </div>
-      </div>
-      <div class="pub-item">
-        <div class="pub-content">
-          <span class="pub-venue-badge">ITC-CSCC 2025</span>
+        <div class="pub-item">
           <a class="pub-title-link" href="https://ieeexplore.ieee.org/abstract/document/11137701/" target="_blank">Low-Light Face Recognition for Mobile Robots</a>
           <div class="pub-authors"><strong>C. Baek</strong>, J. Song, K. Kong&dagger;</div>
-          <div class="pub-venue-text">International Technical Conference on Circuits/Systems, Computers and Communications, Jul. 2025</div>
+          <div class="pub-venue conf">ITC-CSCC 2025 &mdash; International Technical Conference on Circuits/Systems, Computers and Communications, Jul. 2025</div>
           <div class="pub-buttons">
             <a class="pub-btn paper" href="https://ieeexplore.ieee.org/abstract/document/11137701/" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
           </div>
         </div>
-      </div>
 
-      <h3 style="font-size:1rem; font-weight:700; color:var(--text); margin:24px 0 16px;">International Journals</h3>
+        <h3 style="font-size:1rem; font-weight:700; color:var(--text); margin:24px 0 16px;">International Journals</h3>
 
-      <div class="pub-item">
-        <div class="pub-content">
-          <span class="pub-venue-badge journal">IEEE SPL</span>
+        <div class="pub-item">
           <a class="pub-title-link" href="https://ieeexplore.ieee.org/document/11048580" target="_blank">Unsupervised Knowledge Distillation via Local Representations for Vision-Language Models</a>
           <div class="pub-authors"><strong>C. Baek</strong>, J. Song, K. Kong&dagger;</div>
-          <div class="pub-venue-text">IEEE Signal Processing Letters, Aug. 2025</div>
+          <div class="pub-venue journal">IEEE Signal Processing Letters, Aug. 2025</div>
           <div class="pub-buttons">
             <a class="pub-btn paper" href="https://ieeexplore.ieee.org/document/11048580" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
           </div>
         </div>
-      </div>
 
-      <h3 style="font-size:1rem; font-weight:700; color:var(--text); margin:24px 0 16px;">Domestic</h3>
+        <h3 style="font-size:1rem; font-weight:700; color:var(--text); margin:24px 0 16px;">Domestic</h3>
 
-      <div class="pub-item">
-        <div class="pub-content">
-          <span class="pub-venue-badge domestic">KIBME 2026</span>
+        <div class="pub-item">
           <a class="pub-title-link" href="#">Visual Token Pruning Based on Entropy Dynamics in Vision Encoders of Multimodal LLMs</a>
           <div class="pub-authors"><strong>C. Baek*</strong>, S. Kim*, J. Song*, K. Baek, K. Kong&dagger;</div>
-          <div class="pub-venue-text">KIBME Letters, 2026</div>
+          <div class="pub-venue domestic">KIBME Letters, 2026</div>
         </div>
-      </div>
-      <div class="pub-item">
-        <div class="pub-content">
-          <span class="pub-venue-badge domestic">IEMEK 2024</span>
+        <div class="pub-item">
           <a class="pub-title-link" href="https://koreascience.or.kr/article/JAKO202432057917753.page" target="_blank">Deep Learning-Based Face Recognition through Low-Light Enhancement</a>
           <div class="pub-authors"><strong>C. Baek</strong>, K. Kong&dagger;</div>
-          <div class="pub-venue-text">IEMEK Journal of Embedded Systems and Applications, Oct. 2024</div>
+          <div class="pub-venue domestic">IEMEK Journal of Embedded Systems and Applications, Oct. 2024</div>
           <div class="pub-buttons">
             <a class="pub-btn paper" href="https://koreascience.or.kr/article/JAKO202432057917753.page" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
           </div>
@@ -506,9 +479,9 @@
       </div>
     </section>
 
-    <!-- ════════ Experience ════════ -->
+    <!-- ════════ Projects ════════ -->
     <section class="section" id="experience">
-      <h2 class="section-title">Experience</h2>
+      <h2 class="section-title">Projects</h2>
       <div class="exp-grid">
         <div class="exp-date">Jun 2025 &ndash;<br>Present</div>
         <div class="exp-detail">
@@ -563,11 +536,6 @@
           <div class="exp-title">Teaching Assistant &mdash; Digital Circuits Laboratory [EE3100695]</div>
           <div class="exp-org">Pusan National University</div>
         </div>
-        <div class="exp-date">Fall 2023</div>
-        <div class="exp-detail">
-          <div class="exp-title">Tutor &mdash; Signals and Systems</div>
-          <div class="exp-org">Pusan National University</div>
-        </div>
       </div>
     </section>
 
@@ -604,6 +572,16 @@
       icon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
       localStorage.setItem('theme', isDark ? 'light' : 'dark');
     });
+
+    function toggleFullPub() {
+      const btn = document.getElementById('fullPubToggle');
+      const content = document.getElementById('fullPubContent');
+      const isOpen = content.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+      btn.innerHTML = isOpen
+        ? '<i class="fas fa-chevron-up"></i> Hide Full Publications'
+        : '<i class="fas fa-chevron-down"></i> Show Full Publications';
+    }
   </script>
 </body>
 </html>
