@@ -6,404 +6,479 @@
   <title>Changwoo Baek</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css" />
   <style>
     :root {
       --bg: #fff;
-      --bg-alt: #f8f9fa;
-      --text: #1a1a2e;
-      --text-dim: #555;
-      --text-muted: #888;
-      --accent: #2563eb;
-      --accent-light: #eff6ff;
-      --border: #e5e7eb;
-      --card-bg: #fff;
-      --card-shadow: 0 1px 3px rgba(0,0,0,0.08);
-      --nav-bg: rgba(255,255,255,0.85);
-      --tag-bg: #eff6ff;
-      --tag-text: #2563eb;
+      --bg-alt: #f7f7f7;
+      --text: #2c3e50;
+      --text-light: #555;
+      --text-muted: #999;
+      --primary: #1565c0;
+      --primary-light: #e3f2fd;
+      --border: #e0e0e0;
+      --nav-bg: #fff;
+      --card-shadow: 0 2px 6px rgba(0,0,0,0.06);
     }
     [data-theme="dark"] {
-      --bg: #0f172a;
-      --bg-alt: #1e293b;
-      --text: #e2e8f0;
-      --text-dim: #94a3b8;
-      --text-muted: #64748b;
-      --accent: #60a5fa;
-      --accent-light: rgba(96,165,250,0.1);
-      --border: #334155;
-      --card-bg: #1e293b;
-      --card-shadow: 0 1px 3px rgba(0,0,0,0.3);
-      --nav-bg: rgba(15,23,42,0.85);
-      --tag-bg: rgba(96,165,250,0.12);
-      --tag-text: #60a5fa;
+      --bg: #1a1a2e;
+      --bg-alt: #16213e;
+      --text: #e0e0e0;
+      --text-light: #aab;
+      --text-muted: #778;
+      --primary: #68b5ff;
+      --primary-light: rgba(104,181,255,0.1);
+      --border: #2c2c4a;
+      --nav-bg: #1a1a2e;
+      --card-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', -apple-system, sans-serif;
+      font-family: 'Lato', sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.7;
+      line-height: 1.65;
       transition: background .3s, color .3s;
     }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-    /* ── Nav ── */
+    /* ── Navbar ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--nav-bg);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      transition: background .3s, border .3s;
+      background: var(--nav-bg); border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      transition: background .3s;
     }
     .nav-inner {
-      max-width: 900px; margin: 0 auto;
-      padding: 0 24px;
+      max-width: 1080px; margin: 0 auto;
+      padding: 0 20px;
       display: flex; align-items: center; justify-content: space-between;
-      height: 56px;
+      height: 50px;
     }
-    .nav-brand { font-weight: 800; font-size: 18px; color: var(--text); text-decoration: none; }
-    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-brand { font-weight: 700; font-size: 18px; color: var(--text); text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 20px; }
     .nav-links a {
-      color: var(--text-dim); text-decoration: none; font-size: 14px; font-weight: 500;
+      color: var(--text); text-decoration: none; font-size: 14px; font-weight: 400;
       transition: color .2s;
     }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover { color: var(--primary); }
     .theme-btn {
       border: none; background: transparent; cursor: pointer;
-      color: var(--text-dim); font-size: 18px; padding: 4px;
+      color: var(--text-light); font-size: 16px; padding: 4px;
       transition: color .2s;
     }
-    .theme-btn:hover { color: var(--accent); }
+    .theme-btn:hover { color: var(--primary); }
 
-    /* ── Layout ── */
-    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
-    section { padding: 60px 0; }
-    section + section { border-top: 1px solid var(--border); }
+    /* ── Container ── */
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
-    /* ── Hero ── */
-    .hero {
-      padding-top: 120px; padding-bottom: 60px;
-      display: grid; grid-template-columns: 180px 1fr; gap: 40px; align-items: center;
+    /* ── About / Biography Section ── */
+    .about-section {
+      padding-top: 80px; padding-bottom: 40px;
     }
-    .hero-img {
-      width: 180px; height: 180px; border-radius: 50%;
-      object-fit: cover; border: 4px solid var(--border);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    .about-grid {
+      display: grid; grid-template-columns: 240px 1fr; gap: 48px;
+      align-items: start;
     }
-    .hero-name { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; }
-    .hero-title { color: var(--text-dim); font-size: 16px; margin-top: 6px; font-weight: 500; }
-    .hero-bio { color: var(--text-dim); font-size: 15px; margin-top: 14px; line-height: 1.8; }
-    .hero-socials { display: flex; gap: 14px; margin-top: 18px; }
-    .hero-socials a {
-      width: 40px; height: 40px; border-radius: 50%;
+    .about-photo-col { text-align: center; }
+    .about-photo {
+      width: 200px; height: 200px; border-radius: 50%;
+      object-fit: cover; margin-bottom: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .about-name {
+      font-size: 24px; font-weight: 700; margin-bottom: 2px;
+      color: var(--text);
+    }
+    .about-role {
+      font-size: 16px; color: var(--text-light); margin-bottom: 4px;
+    }
+    .about-org {
+      font-size: 14px; margin-bottom: 12px;
+    }
+    .about-org a { color: var(--primary); font-weight: 400; }
+    .about-socials {
+      display: flex; justify-content: center; gap: 10px;
+    }
+    .about-socials a {
+      width: 36px; height: 36px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      background: var(--bg-alt); color: var(--text-dim); font-size: 17px;
-      text-decoration: none; transition: all .2s; border: 1px solid var(--border);
+      color: var(--primary); font-size: 18px;
+      text-decoration: none; transition: color .2s;
     }
-    .hero-socials a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
-    .hero-interests { margin-top: 20px; }
-    .hero-interests h3 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 10px; }
-    .interest-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tag {
-      padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 600;
-      background: var(--tag-bg); color: var(--tag-text);
-    }
+    .about-socials a:hover { color: var(--text); }
 
-    /* ── Section Header ── */
-    .section-header {
-      display: flex; align-items: center; gap: 12px;
-      margin-bottom: 32px;
+    .about-info-col { flex: 1; }
+    .about-info-col h2 {
+      font-size: 28px; font-weight: 700; margin-bottom: 16px;
+      padding-bottom: 12px; border-bottom: 1px solid var(--border);
     }
-    .section-header i { color: var(--accent); font-size: 20px; }
-    .section-header h2 { font-size: 24px; font-weight: 800; letter-spacing: -0.01em; }
+    .about-bio {
+      font-size: 15px; line-height: 1.8; color: var(--text);
+      margin-bottom: 24px; text-align: justify;
+    }
+    .about-bio ul {
+      margin-top: 10px; padding-left: 20px;
+    }
+    .about-bio li { margin-bottom: 4px; }
+    .about-bio strong { font-weight: 700; }
 
-    /* ── Education ── */
-    .edu-item {
-      display: grid; grid-template-columns: 56px 1fr; gap: 16px;
-      padding: 20px 0;
+    .about-bottom {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+      margin-top: 8px;
     }
-    .edu-item + .edu-item { border-top: 1px solid var(--border); }
-    .edu-icon {
-      width: 56px; height: 56px; border-radius: 14px;
-      background: var(--accent-light); display: flex; align-items: center; justify-content: center;
-      font-size: 22px; color: var(--accent);
+    .about-bottom h3 {
+      font-size: 18px; font-weight: 700; margin-bottom: 12px;
+      text-transform: none;
     }
-    .edu-degree { font-weight: 700; font-size: 16px; }
-    .edu-school { color: var(--text-dim); font-size: 14px; margin-top: 2px; }
-    .edu-period { color: var(--text-muted); font-size: 13px; margin-top: 4px; }
+    .interest-list { list-style: none; padding: 0; }
+    .interest-list li {
+      font-size: 14px; padding: 3px 0;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .interest-list li i { color: var(--primary); font-size: 12px; }
+
+    .edu-list { list-style: none; padding: 0; }
+    .edu-list li {
+      font-size: 14px; padding: 6px 0;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .edu-list li i { color: var(--primary); font-size: 16px; margin-top: 2px; }
+    .edu-list .edu-degree-name { font-weight: 700; }
+    .edu-list .edu-inst { color: var(--text-light); font-size: 13px; }
+    .edu-list .edu-year { color: var(--text-muted); font-size: 13px; }
+
+    /* ── Section Styles ── */
+    .section { padding: 48px 0; }
+    .section-title {
+      font-size: 28px; font-weight: 700; margin-bottom: 24px;
+      padding-bottom: 12px; border-bottom: 1px solid var(--border);
+    }
 
     /* ── Publications ── */
     .pub-item {
-      padding: 22px 0;
+      padding: 16px 0;
     }
     .pub-item + .pub-item { border-top: 1px solid var(--border); }
-    .pub-venue {
-      display: inline-flex; padding: 4px 10px; border-radius: 6px;
-      font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
-      background: var(--tag-bg); color: var(--tag-text); margin-bottom: 8px;
+    .pub-title-link {
+      font-size: 16px; font-weight: 700; color: var(--primary);
+      text-decoration: none; line-height: 1.5;
     }
-    .pub-title { font-weight: 700; font-size: 16px; line-height: 1.5; }
-    .pub-authors { color: var(--text-dim); font-size: 14px; margin-top: 6px; }
-    .pub-authors strong { color: var(--text); font-weight: 700; }
-    .pub-links { display: flex; gap: 10px; margin-top: 10px; }
-    .pub-links a {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 600;
-      background: var(--bg-alt); color: var(--text-dim); text-decoration: none;
-      border: 1px solid var(--border); transition: all .2s;
+    .pub-title-link:hover { text-decoration: underline; }
+    .pub-authors {
+      font-size: 14px; color: var(--text-light); margin-top: 4px;
     }
-    .pub-links a:hover { border-color: var(--accent); color: var(--accent); }
+    .pub-authors strong { color: var(--text); }
+    .pub-venue-name {
+      font-size: 13px; color: var(--text-muted); font-style: italic;
+      margin-top: 2px;
+    }
+    .pub-buttons { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+    .pub-btn {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 400;
+      background: var(--primary); color: #fff; text-decoration: none;
+      transition: opacity .2s;
+    }
+    .pub-btn:hover { opacity: 0.85; text-decoration: none; }
+    .pub-btn.outline {
+      background: transparent; color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+    .pub-btn.outline:hover { background: var(--primary-light); }
 
-    /* ── Experience ── */
-    .exp-item {
-      display: grid; grid-template-columns: 56px 1fr; gap: 16px;
-      padding: 20px 0;
+    /* ── Experience Timeline ── */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px;
+      width: 2px; background: var(--border);
     }
-    .exp-item + .exp-item { border-top: 1px solid var(--border); }
-    .exp-icon {
-      width: 56px; height: 56px; border-radius: 14px;
-      background: var(--accent-light); display: flex; align-items: center; justify-content: center;
-      font-size: 22px; color: var(--accent);
+    .timeline-item { position: relative; padding: 12px 0; }
+    .timeline-item + .timeline-item { border: none; }
+    .timeline-dot {
+      position: absolute; left: -28px; top: 18px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--primary); border: 3px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--primary);
     }
-    .exp-role { font-weight: 700; font-size: 16px; }
-    .exp-org { color: var(--text-dim); font-size: 14px; margin-top: 2px; }
-    .exp-period { color: var(--text-muted); font-size: 13px; margin-top: 4px; }
-    .exp-desc { color: var(--text-dim); font-size: 14px; margin-top: 8px; line-height: 1.7; }
-
-    /* ── Skills ── */
-    .skills-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px;
+    .timeline-title { font-size: 15px; font-weight: 700; }
+    .timeline-org { font-size: 14px; color: var(--text-light); margin-top: 2px; }
+    .timeline-meta {
+      font-size: 13px; color: var(--text-muted); margin-top: 2px;
     }
-    .skill-card {
-      padding: 18px; border-radius: 14px; text-align: center;
-      background: var(--card-bg); border: 1px solid var(--border);
-      box-shadow: var(--card-shadow); transition: transform .2s;
+    .timeline-desc {
+      font-size: 14px; color: var(--text-light); margin-top: 6px; line-height: 1.6;
     }
-    .skill-card:hover { transform: translateY(-2px); }
-    .skill-card i { font-size: 28px; color: var(--accent); margin-bottom: 8px; }
-    .skill-card span { display: block; font-size: 13px; font-weight: 600; }
 
     /* ── Honors ── */
-    .honor-item { padding: 14px 0; display: flex; align-items: flex-start; gap: 12px; }
-    .honor-item + .honor-item { border-top: 1px solid var(--border); }
-    .honor-icon { color: #f59e0b; font-size: 16px; margin-top: 3px; }
-    .honor-text { font-size: 15px; font-weight: 500; }
-    .honor-year { color: var(--text-muted); font-size: 13px; }
+    .honor-list { list-style: none; padding: 0; }
+    .honor-list li {
+      padding: 10px 0; display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px;
+    }
+    .honor-list li + li { border-top: 1px solid var(--border); }
+    .honor-list .honor-icon { color: var(--primary); font-size: 14px; margin-top: 3px; }
+    .honor-list .honor-title { font-weight: 700; }
+    .honor-list .honor-date { color: var(--text-muted); font-size: 13px; }
 
-    /* ── Teaching ── */
-    .teach-item { padding: 14px 0; display: flex; align-items: flex-start; gap: 12px; }
-    .teach-item + .teach-item { border-top: 1px solid var(--border); }
-    .teach-icon { color: var(--accent); font-size: 16px; margin-top: 3px; }
-    .teach-text { font-size: 15px; font-weight: 500; }
-    .teach-period { color: var(--text-muted); font-size: 13px; }
+    /* ── Skills ── */
+    .skills-row {
+      display: flex; flex-wrap: wrap; gap: 10px;
+    }
+    .skill-tag {
+      padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 400;
+      background: var(--primary-light); color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+
+    /* ── Contact ── */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 14px;
+    }
+    .contact-item i {
+      font-size: 18px; color: var(--primary); width: 24px; text-align: center;
+    }
 
     /* ── Footer ── */
     footer {
-      padding: 32px 0; text-align: center;
-      color: var(--text-muted); font-size: 13px;
+      padding: 24px 0; text-align: center;
+      color: var(--text-muted); font-size: 12px;
       border-top: 1px solid var(--border);
+      margin-top: 24px;
     }
 
     /* ── Mobile ── */
-    @media (max-width: 640px) {
-      .hero { grid-template-columns: 1fr; text-align: center; justify-items: center; }
-      .hero-img { width: 140px; height: 140px; }
-      .hero-socials { justify-content: center; }
-      .interest-tags { justify-content: center; }
-      .nav-links { gap: 16px; }
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; text-align: center; }
+      .about-photo-col { margin-bottom: 16px; }
+      .about-info-col h2 { text-align: center; }
+      .about-bio { text-align: left; }
+      .about-bottom { grid-template-columns: 1fr; text-align: left; }
+      .about-socials { justify-content: center; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 12px; }
       .nav-links a { font-size: 13px; }
-      .section-header h2 { font-size: 20px; }
-      .edu-item, .exp-item { grid-template-columns: 1fr; }
-      .edu-icon, .exp-icon { width: 44px; height: 44px; font-size: 18px; border-radius: 12px; }
-    }
-    @media (max-width: 420px) {
       .nav-links a.hide-mobile { display: none; }
     }
   </style>
 </head>
 <body>
+  <!-- Navbar -->
   <nav>
     <div class="nav-inner">
-      <a class="nav-brand" href="#">CW</a>
+      <a class="nav-brand" href="#">Changwoo Baek</a>
       <div class="nav-links">
-        <a href="#about">About</a>
+        <a href="#about">Home</a>
         <a href="#publications">Publications</a>
-        <a href="#experience" class="hide-mobile">Experience</a>
+        <a href="#experience">Experience</a>
+        <a href="#honors" class="hide-mobile">Honors & Awards</a>
         <a href="#teaching" class="hide-mobile">Teaching</a>
+        <a href="#contact" class="hide-mobile">Contact</a>
         <button class="theme-btn" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
       </div>
     </div>
   </nav>
 
   <div class="container">
-    <!-- Hero -->
-    <section class="hero" id="about">
-      <img class="hero-img" src="profile.jpg" alt="Changwoo Baek" />
-      <div>
-        <h1 class="hero-name">Changwoo Baek</h1>
-        <p class="hero-title">M.S. Student @ CVSP Lab, Pusan National University</p>
-        <p class="hero-bio">
-          I am a Master's student in the Department of Electronic Engineering at Pusan National University,
-          working at CVSP Lab. My research interests lie in Vision-Language Models and efficient Multimodal Large Language Models (MLLMs).
-          I focus on making MLLMs more hardware-efficient through visual token pruning, knowledge distillation, and KV cache compression.
-        </p>
-        <div class="hero-socials">
-          <a href="mailto:higok18@pusan.ac.kr" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://scholar.google.co.kr/citations?user=4Xrc3r0AAAAJ&hl=ko&oi=ao" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-          <a href="https://github.com/higokri" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/changwoo-baek-2b43332b6/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <!-- About / Biography -->
+    <section class="about-section" id="about">
+      <div class="about-grid">
+        <div class="about-photo-col">
+          <img class="about-photo" src="profile.jpg" alt="Changwoo Baek" />
+          <div class="about-name">Changwoo Baek</div>
+          <div class="about-role">M.S. Student</div>
+          <div class="about-org">
+            <a href="https://cvsp.pusan.ac.kr/" target="_blank">CVSP Lab, Pusan National University</a>
+          </div>
+          <div class="about-socials">
+            <a href="mailto:higok18@pusan.ac.kr" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://scholar.google.co.kr/citations?user=4Xrc3r0AAAAJ&hl=ko&oi=ao" target="_blank" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+            <a href="https://github.com/higokri" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/changwoo-baek-2b43332b6/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          </div>
         </div>
-        <div class="hero-interests">
-          <h3>Research Interests</h3>
-          <div class="interest-tags">
-            <span class="tag">Visual Token Pruning</span>
-            <span class="tag">Knowledge Distillation</span>
-            <span class="tag">KV Cache Compression</span>
-            <span class="tag">Efficient MLLM</span>
-            <span class="tag">Robot Vision</span>
+        <div class="about-info-col">
+          <h2>Biography</h2>
+          <div class="about-bio">
+            I am a Master's student in the Department of Electronic Engineering at Pusan National University,
+            working at <a href="https://cvsp.pusan.ac.kr/" target="_blank"><strong>CVSP Lab</strong></a>. My research interests lie in Vision-Language Models and efficient Multimodal Large Language Models (MLLMs).
+            I focus on making MLLMs more hardware-efficient through visual token pruning, knowledge distillation, and KV cache compression.
+
+            <br /><br />
+            My current research focuses include:
+            <ul>
+              <li><strong>Visual Token Pruning:</strong> Reducing visual tokens for efficient MLLM inference.</li>
+              <li><strong>Knowledge Distillation:</strong> Compressing large models into smaller, efficient ones.</li>
+              <li><strong>KV Cache Compression:</strong> Efficient key-value cache management for LLMs.</li>
+              <li><strong>Robot Vision:</strong> Efficient architectures for robot vision systems.</li>
+            </ul>
+          </div>
+          <div class="about-bottom">
+            <div>
+              <h3>Interests</h3>
+              <ul class="interest-list">
+                <li><i class="fas fa-chevron-right"></i> Visual Token Pruning</li>
+                <li><i class="fas fa-chevron-right"></i> Knowledge Distillation</li>
+                <li><i class="fas fa-chevron-right"></i> KV Cache Compression</li>
+                <li><i class="fas fa-chevron-right"></i> Efficient MLLM</li>
+                <li><i class="fas fa-chevron-right"></i> Robot Vision</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Education</h3>
+              <ul class="edu-list">
+                <li>
+                  <i class="fas fa-graduation-cap"></i>
+                  <div>
+                    <div class="edu-degree-name">M.S. in Electronic Engineering</div>
+                    <div class="edu-inst">Pusan National University (CVSP Lab)</div>
+                    <div class="edu-year">Mar 2025 &ndash; Present</div>
+                  </div>
+                </li>
+                <li>
+                  <i class="fas fa-graduation-cap"></i>
+                  <div>
+                    <div class="edu-degree-name">B.S. in Electronic Engineering</div>
+                    <div class="edu-inst">Pusan National University</div>
+                    <div class="edu-year">Mar 2019 &ndash; Feb 2025</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Education -->
-    <section id="education">
-      <div class="section-header">
-        <i class="fas fa-graduation-cap"></i>
-        <h2>Education</h2>
-      </div>
-      <div class="edu-item">
-        <div class="edu-icon"><i class="fas fa-university"></i></div>
-        <div>
-          <div class="edu-degree">M.S. in Electronic Engineering</div>
-          <div class="edu-school">Pusan National University (CVSP Lab)</div>
-          <div class="edu-period">Mar 2025 &ndash; Present</div>
-        </div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-icon"><i class="fas fa-university"></i></div>
-        <div>
-          <div class="edu-degree">B.S. in Electronic Engineering</div>
-          <div class="edu-school">Pusan National University</div>
-          <div class="edu-period">Mar 2019 &ndash; Feb 2025</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Featured Publications -->
-    <section id="publications">
-      <div class="section-header">
-        <i class="fas fa-book"></i>
-        <h2>Publications</h2>
-      </div>
+    <!-- Publications -->
+    <section class="section" id="publications">
+      <h2 class="section-title">Publications</h2>
       <div class="pub-item">
-        <div class="pub-venue">ICLR 2026</div>
-        <div class="pub-title">An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning in Large Vision-Language Models</div>
+        <a class="pub-title-link" href="#">An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning in Large Vision-Language Models</a>
         <div class="pub-authors"><strong>Changwoo Baek</strong>, et al.</div>
-        <div class="pub-links">
-          <a href="https://github.com/higokri/AgilePruner" target="_blank"><i class="fab fa-github"></i> Code</a>
-          <a href="#"><i class="fas fa-file-pdf"></i> Paper</a>
+        <div class="pub-venue-name">ICLR 2026</div>
+        <div class="pub-buttons">
+          <a class="pub-btn" href="https://github.com/higokri/AgilePruner" target="_blank"><i class="fab fa-github"></i> Code</a>
+          <a class="pub-btn outline" href="#"><i class="fas fa-file-pdf"></i> Paper</a>
         </div>
       </div>
       <div class="pub-item">
-        <div class="pub-venue">NeurIPS 2025 ER Workshop</div>
-        <div class="pub-title">Efficient Visual Token Pruning for Multimodal Large Language Models</div>
+        <a class="pub-title-link" href="#">Efficient Visual Token Pruning for Multimodal Large Language Models</a>
         <div class="pub-authors"><strong>Changwoo Baek</strong>, et al.</div>
-        <div class="pub-links">
-          <a href="#"><i class="fas fa-file-pdf"></i> Paper</a>
+        <div class="pub-venue-name">NeurIPS 2025 Efficient Reasoning Workshop</div>
+        <div class="pub-buttons">
+          <a class="pub-btn outline" href="#"><i class="fas fa-file-pdf"></i> Paper</a>
         </div>
       </div>
       <div class="pub-item">
-        <div class="pub-venue">IEEE Signal Processing Letters</div>
-        <div class="pub-title">Signal Processing for Efficient Vision-Language Representation</div>
+        <a class="pub-title-link" href="#">Signal Processing for Efficient Vision-Language Representation</a>
         <div class="pub-authors"><strong>Changwoo Baek</strong>, et al.</div>
-        <div class="pub-links">
-          <a href="#"><i class="fas fa-file-pdf"></i> Paper</a>
+        <div class="pub-venue-name">IEEE Signal Processing Letters</div>
+        <div class="pub-buttons">
+          <a class="pub-btn outline" href="#"><i class="fas fa-file-pdf"></i> Paper</a>
         </div>
       </div>
     </section>
 
     <!-- Experience -->
-    <section id="experience">
-      <div class="section-header">
-        <i class="fas fa-briefcase"></i>
-        <h2>Experience</h2>
-      </div>
-      <div class="exp-item">
-        <div class="exp-icon"><i class="fas fa-robot"></i></div>
-        <div>
-          <div class="exp-role">Robot Vision System Development</div>
-          <div class="exp-org">Collaboration with LG Electronics</div>
-          <div class="exp-period">2023 &ndash; Present</div>
-          <div class="exp-desc">Developing efficient architecture for robot vision systems in collaboration with LG Electronics.</div>
+    <section class="section" id="experience">
+      <h2 class="section-title">Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-title">Robot Vision System Development</div>
+          <div class="timeline-org">Collaboration with LG Electronics</div>
+          <div class="timeline-meta">2023 &ndash; Present</div>
+          <div class="timeline-desc">Developing efficient architecture for robot vision systems in collaboration with LG Electronics.</div>
         </div>
       </div>
     </section>
 
-    <!-- Teaching -->
-    <section id="teaching">
-      <div class="section-header">
-        <i class="fas fa-chalkboard-teacher"></i>
-        <h2>Teaching</h2>
-      </div>
-      <div class="teach-item">
-        <i class="fas fa-chalkboard teach-icon"></i>
-        <div>
-          <div class="teach-text">Teaching Assistant &mdash; C Programming</div>
-          <div class="teach-period">Spring 2025</div>
-        </div>
-      </div>
-      <div class="teach-item">
-        <i class="fas fa-chalkboard teach-icon"></i>
-        <div>
-          <div class="teach-text">Teaching Assistant &mdash; Digital Circuit Lab</div>
-          <div class="teach-period">Fall 2025</div>
-        </div>
-      </div>
-      <div class="teach-item">
-        <i class="fas fa-chalkboard teach-icon"></i>
-        <div>
-          <div class="teach-text">Tutor &mdash; Signals and Systems</div>
-          <div class="teach-period">Fall 2023</div>
-        </div>
-      </div>
+    <!-- Honors & Awards -->
+    <section class="section" id="honors">
+      <h2 class="section-title">Honors and Awards</h2>
+      <ul class="honor-list">
+        <li>
+          <i class="fas fa-trophy honor-icon"></i>
+          <div>
+            <div class="honor-title">Excellence Award, Industrial AI Convergence Club</div>
+            <div class="honor-date">2024</div>
+          </div>
+        </li>
+      </ul>
     </section>
 
-    <!-- Honors -->
-    <section id="honors">
-      <div class="section-header">
-        <i class="fas fa-trophy"></i>
-        <h2>Honors & Awards</h2>
-      </div>
-      <div class="honor-item">
-        <i class="fas fa-award honor-icon"></i>
-        <div>
-          <div class="honor-text">Excellence Award, Industrial AI Convergence Club</div>
-          <div class="honor-year">2024</div>
+    <!-- Teaching / TA Experience -->
+    <section class="section" id="teaching">
+      <h2 class="section-title">TA Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-title">Teaching Assistant &mdash; C Programming</div>
+          <div class="timeline-org">Pusan National University</div>
+          <div class="timeline-meta">Spring 2025</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-title">Teaching Assistant &mdash; Digital Circuit Lab</div>
+          <div class="timeline-org">Pusan National University</div>
+          <div class="timeline-meta">Fall 2025</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-title">Tutor &mdash; Signals and Systems</div>
+          <div class="timeline-org">Pusan National University</div>
+          <div class="timeline-meta">Fall 2023</div>
         </div>
       </div>
     </section>
 
     <!-- Skills -->
-    <section id="skills">
-      <div class="section-header">
-        <i class="fas fa-code"></i>
-        <h2>Skills</h2>
+    <section class="section" id="skills">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-row">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">C / C++</span>
+        <span class="skill-tag">ROS2</span>
       </div>
-      <div class="skills-grid">
-        <div class="skill-card"><i class="fab fa-python"></i><span>Python</span></div>
-        <div class="skill-card"><i class="fas fa-fire"></i><span>PyTorch</span></div>
-        <div class="skill-card"><i class="fas fa-code"></i><span>C / C++</span></div>
-        <div class="skill-card"><i class="fas fa-robot"></i><span>ROS2</span></div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:higok18@pusan.ac.kr">higok18@pusan.ac.kr</a>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-github"></i>
+          <a href="https://github.com/higokri" target="_blank">github.com/higokri</a>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-linkedin"></i>
+          <a href="https://www.linkedin.com/in/changwoo-baek-2b43332b6/" target="_blank">LinkedIn</a>
+        </div>
+        <div class="contact-item">
+          <i class="ai ai-google-scholar"></i>
+          <a href="https://scholar.google.co.kr/citations?user=4Xrc3r0AAAAJ&hl=ko&oi=ao" target="_blank">Google Scholar</a>
+        </div>
       </div>
     </section>
   </div>
 
   <footer>
     <div class="container">
-      &copy; 2025 Changwoo Baek. All rights reserved.
+      &copy; 2025 Changwoo Baek &middot; Powered by Changwoo Baek
     </div>
   </footer>
 
