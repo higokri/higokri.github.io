@@ -17,10 +17,10 @@
       --text-light: #555;
       --text-muted: #999;
       --primary: #1565c0;
+      --primary-dark: #0d47a1;
       --primary-light: #e3f2fd;
       --border: #e0e0e0;
       --nav-bg: #fff;
-      --card-shadow: 0 2px 6px rgba(0,0,0,0.06);
     }
     [data-theme="dark"] {
       --bg: #1a1a2e;
@@ -29,10 +29,10 @@
       --text-light: #aab;
       --text-muted: #778;
       --primary: #68b5ff;
+      --primary-dark: #4da3ff;
       --primary-light: rgba(104,181,255,0.1);
       --border: #2c2c4a;
       --nav-bg: #1a1a2e;
-      --card-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -44,228 +44,259 @@
       transition: background .3s, color .3s;
     }
     a { color: var(--primary); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a:hover { color: var(--primary-dark); }
 
     /* ── Navbar ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--nav-bg); border-bottom: 1px solid var(--border);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      background: var(--nav-bg);
+      box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
       transition: background .3s;
     }
     .nav-inner {
-      max-width: 1080px; margin: 0 auto;
-      padding: 0 20px;
+      max-width: 1150px; margin: 0 auto;
+      padding: 0 16px;
       display: flex; align-items: center; justify-content: space-between;
       height: 50px;
     }
-    .nav-brand { font-weight: 700; font-size: 18px; color: var(--text); text-decoration: none; }
-    .nav-links { display: flex; align-items: center; gap: 20px; }
+    .nav-brand {
+      font-weight: 700; font-size: 1.1rem; color: var(--text);
+      text-decoration: none; letter-spacing: -0.01em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 0; }
     .nav-links a {
       color: var(--text); text-decoration: none; font-size: 14px; font-weight: 400;
-      transition: color .2s;
+      padding: 14px 12px; transition: color .2s;
     }
     .nav-links a:hover { color: var(--primary); }
     .theme-btn {
       border: none; background: transparent; cursor: pointer;
-      color: var(--text-light); font-size: 16px; padding: 4px;
+      color: var(--text-light); font-size: 16px; padding: 14px 8px;
       transition: color .2s;
     }
     .theme-btn:hover { color: var(--primary); }
 
     /* ── Container ── */
-    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    .container { max-width: 1150px; margin: 0 auto; padding: 0 16px; }
+
+    /* ── Two Column Layout (Hugo Academic style) ── */
+    .two-col {
+      display: grid; grid-template-columns: 280px 1fr; gap: 0;
+      padding: 48px 0;
+    }
+    .two-col .col-left {
+      padding-right: 40px; text-align: center;
+    }
+    .two-col .col-right {
+      padding-left: 40px;
+      border-left: 1px solid var(--border);
+    }
 
     /* ── About / Biography Section ── */
-    .about-section {
-      padding-top: 80px; padding-bottom: 40px;
-    }
-    .about-grid {
-      display: grid; grid-template-columns: 240px 1fr; gap: 48px;
-      align-items: start;
-    }
-    .about-photo-col { text-align: center; }
+    .about-section { padding-top: 80px; padding-bottom: 0; }
+
     .about-photo {
       width: 200px; height: 200px; border-radius: 50%;
       object-fit: cover; margin-bottom: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     .about-name {
-      font-size: 24px; font-weight: 700; margin-bottom: 2px;
-      color: var(--text);
+      font-size: 1.75rem; font-weight: 700; margin-bottom: 4px;
     }
     .about-role {
-      font-size: 16px; color: var(--text-light); margin-bottom: 4px;
+      font-size: 1rem; color: var(--text-light); margin-bottom: 2px;
+      font-weight: 400;
     }
-    .about-org {
-      font-size: 14px; margin-bottom: 12px;
-    }
-    .about-org a { color: var(--primary); font-weight: 400; }
+    .about-org { font-size: 0.9rem; margin-bottom: 16px; }
+    .about-org a { color: var(--text-muted); font-weight: 400; }
+    .about-org a:hover { color: var(--primary); }
     .about-socials {
-      display: flex; justify-content: center; gap: 10px;
+      display: flex; justify-content: center; gap: 6px; margin-bottom: 8px;
     }
     .about-socials a {
-      width: 36px; height: 36px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--primary); font-size: 18px;
-      text-decoration: none; transition: color .2s;
+      width: 38px; height: 38px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--primary); font-size: 1.1rem;
+      text-decoration: none; transition: all .2s;
     }
-    .about-socials a:hover { color: var(--text); }
+    .about-socials a:hover { color: #fff; background: var(--primary); }
 
-    .about-info-col { flex: 1; }
-    .about-info-col h2 {
-      font-size: 28px; font-weight: 700; margin-bottom: 16px;
-      padding-bottom: 12px; border-bottom: 1px solid var(--border);
+    .bio-heading {
+      font-size: 1.5rem; font-weight: 700; margin-bottom: 16px;
     }
     .about-bio {
-      font-size: 15px; line-height: 1.8; color: var(--text);
-      margin-bottom: 24px; text-align: justify;
+      font-size: 1rem; line-height: 1.8; color: var(--text);
+      margin-bottom: 20px; text-align: justify;
     }
-    .about-bio ul {
-      margin-top: 10px; padding-left: 20px;
-    }
-    .about-bio li { margin-bottom: 4px; }
-    .about-bio strong { font-weight: 700; }
+    .about-bio a { color: var(--primary); font-weight: 700; }
 
-    .about-bottom {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
-      margin-top: 8px;
-    }
-    .about-bottom h3 {
-      font-size: 18px; font-weight: 700; margin-bottom: 12px;
-      text-transform: none;
+    .about-sub { margin-top: 16px; }
+    .about-sub h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;
     }
     .interest-list { list-style: none; padding: 0; }
     .interest-list li {
-      font-size: 14px; padding: 3px 0;
+      font-size: 0.95rem; padding: 2px 0;
       display: flex; align-items: center; gap: 8px;
     }
-    .interest-list li i { color: var(--primary); font-size: 12px; }
+    .interest-list li i { color: var(--primary); font-size: 10px; }
 
     .edu-list { list-style: none; padding: 0; }
     .edu-list li {
-      font-size: 14px; padding: 6px 0;
+      font-size: 0.95rem; padding: 6px 0;
       display: flex; align-items: flex-start; gap: 10px;
     }
-    .edu-list li i { color: var(--primary); font-size: 16px; margin-top: 2px; }
-    .edu-list .edu-degree-name { font-weight: 700; }
-    .edu-list .edu-inst { color: var(--text-light); font-size: 13px; }
-    .edu-list .edu-year { color: var(--text-muted); font-size: 13px; }
+    .edu-list li i { color: var(--primary); font-size: 16px; margin-top: 3px; flex-shrink: 0; }
+    .edu-degree-name { font-weight: 700; font-size: 0.95rem; }
+    .edu-inst { color: var(--text-light); font-size: 0.85rem; }
+    .edu-year { color: var(--text-muted); font-size: 0.85rem; }
 
     /* ── Section Styles ── */
     .section { padding: 48px 0; }
     .section-title {
-      font-size: 28px; font-weight: 700; margin-bottom: 24px;
-      padding-bottom: 12px; border-bottom: 1px solid var(--border);
+      font-size: 1.75rem; font-weight: 700; margin-bottom: 8px;
     }
+    .section-subtitle {
+      font-size: 0.95rem; color: var(--text-muted); margin-bottom: 24px;
+    }
+
+    /* ── Callout ── */
+    .callout {
+      background: var(--primary-light); border-left: 4px solid var(--primary);
+      padding: 12px 16px; margin-bottom: 24px; border-radius: 0 4px 4px 0;
+      font-size: 0.9rem; color: var(--text);
+    }
+    .callout a { font-weight: 700; }
 
     /* ── Publications ── */
     .pub-item {
-      padding: 16px 0;
+      padding: 20px 0;
+      display: flex; gap: 16px; align-items: flex-start;
     }
     .pub-item + .pub-item { border-top: 1px solid var(--border); }
+    .pub-content { flex: 1; }
+    .pub-venue-badge {
+      display: inline-block; padding: 3px 10px; border-radius: 4px;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.02em;
+      background: var(--primary); color: #fff; margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .pub-venue-badge.journal { background: #2e7d32; }
+    .pub-venue-badge.domestic { background: #6a1b9a; }
+    .pub-venue-badge.oral { background: #e65100; }
     .pub-title-link {
-      font-size: 16px; font-weight: 700; color: var(--primary);
-      text-decoration: none; line-height: 1.5;
+      display: block;
+      font-size: 1rem; font-weight: 700; color: var(--primary);
+      text-decoration: none; line-height: 1.4; margin-bottom: 4px;
     }
     .pub-title-link:hover { text-decoration: underline; }
     .pub-authors {
-      font-size: 14px; color: var(--text-light); margin-top: 4px;
+      font-size: 0.9rem; color: var(--text-light); margin-bottom: 2px;
     }
-    .pub-authors strong { color: var(--text); }
-    .pub-venue-name {
-      font-size: 13px; color: var(--text-muted); font-style: italic;
-      margin-top: 2px;
+    .pub-authors strong { color: var(--text); font-weight: 700; }
+    .pub-venue-text {
+      font-size: 0.85rem; color: var(--text-muted); font-style: italic;
+      margin-bottom: 8px;
     }
-    .pub-buttons { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+    .pub-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
     .pub-btn {
       display: inline-flex; align-items: center; gap: 4px;
-      padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 400;
-      background: var(--primary); color: #fff; text-decoration: none;
-      transition: opacity .2s;
+      padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700;
+      text-decoration: none; transition: all .2s; text-transform: uppercase;
+      letter-spacing: 0.02em; border: 1px solid transparent;
     }
-    .pub-btn:hover { opacity: 0.85; text-decoration: none; }
-    .pub-btn.outline {
-      background: transparent; color: var(--primary);
-      border: 1px solid var(--primary);
+    .pub-btn:hover { text-decoration: none; }
+    .pub-btn.cite {
+      background: var(--primary); color: #fff;
     }
-    .pub-btn.outline:hover { background: var(--primary-light); }
+    .pub-btn.cite:hover { background: var(--primary-dark); }
+    .pub-btn.paper {
+      background: var(--bg-alt); color: var(--text); border-color: var(--border);
+    }
+    .pub-btn.paper:hover { border-color: var(--primary); color: var(--primary); }
+    .pub-btn.code {
+      background: var(--bg-alt); color: var(--text); border-color: var(--border);
+    }
+    .pub-btn.code:hover { border-color: var(--primary); color: var(--primary); }
 
-    /* ── Experience Timeline ── */
-    .timeline { position: relative; padding-left: 28px; }
-    .timeline::before {
-      content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px;
-      width: 2px; background: var(--border);
+    /* ── Experience Timeline (Hugo Academic style) ── */
+    .exp-grid {
+      display: grid; grid-template-columns: 140px 1fr; gap: 0;
     }
-    .timeline-item { position: relative; padding: 12px 0; }
-    .timeline-item + .timeline-item { border: none; }
-    .timeline-dot {
-      position: absolute; left: -28px; top: 18px;
-      width: 14px; height: 14px; border-radius: 50%;
-      background: var(--primary); border: 3px solid var(--bg);
-      box-shadow: 0 0 0 2px var(--primary);
+    .exp-date {
+      font-size: 0.85rem; color: var(--text-muted); padding: 16px 16px 16px 0;
+      text-align: right; border-right: 2px solid var(--border);
+      position: relative;
     }
-    .timeline-title { font-size: 15px; font-weight: 700; }
-    .timeline-org { font-size: 14px; color: var(--text-light); margin-top: 2px; }
-    .timeline-meta {
-      font-size: 13px; color: var(--text-muted); margin-top: 2px;
+    .exp-date::after {
+      content: ''; position: absolute; right: -7px; top: 22px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--primary);
     }
-    .timeline-desc {
-      font-size: 14px; color: var(--text-light); margin-top: 6px; line-height: 1.6;
-    }
+    .exp-detail { padding: 16px 0 16px 24px; }
+    .exp-title { font-size: 1rem; font-weight: 700; }
+    .exp-org { font-size: 0.9rem; color: var(--text-light); margin-top: 2px; }
+    .exp-org a { color: var(--text-light); }
+    .exp-org a:hover { color: var(--primary); }
+    .exp-location { font-size: 0.85rem; color: var(--text-muted); margin-top: 2px; }
+    .exp-desc { font-size: 0.9rem; color: var(--text-light); margin-top: 6px; line-height: 1.6; }
 
     /* ── Honors ── */
-    .honor-list { list-style: none; padding: 0; }
-    .honor-list li {
-      padding: 10px 0; display: flex; align-items: flex-start; gap: 10px;
-      font-size: 14px;
+    .honor-grid {
+      display: grid; grid-template-columns: 100px 1fr; gap: 0;
     }
-    .honor-list li + li { border-top: 1px solid var(--border); }
-    .honor-list .honor-icon { color: var(--primary); font-size: 14px; margin-top: 3px; }
-    .honor-list .honor-title { font-weight: 700; }
-    .honor-list .honor-date { color: var(--text-muted); font-size: 13px; }
+    .honor-date-col {
+      font-size: 0.85rem; color: var(--text-muted); padding: 12px 16px 12px 0;
+      text-align: right; border-right: 2px solid var(--border);
+      position: relative;
+    }
+    .honor-date-col::after {
+      content: ''; position: absolute; right: -7px; top: 18px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--primary);
+    }
+    .honor-detail { padding: 12px 0 12px 24px; }
+    .honor-title { font-size: 0.95rem; font-weight: 700; }
+    .honor-org { font-size: 0.85rem; color: var(--text-muted); }
 
     /* ── Skills ── */
-    .skills-row {
-      display: flex; flex-wrap: wrap; gap: 10px;
-    }
+    .skills-row { display: flex; flex-wrap: wrap; gap: 8px; }
     .skill-tag {
-      padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 400;
-      background: var(--primary-light); color: var(--primary);
-      border: 1px solid var(--primary);
+      padding: 5px 12px; border-radius: 4px; font-size: 0.85rem;
+      background: var(--bg-alt); color: var(--text); border: 1px solid var(--border);
     }
 
     /* ── Contact ── */
-    .contact-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-    }
-    .contact-item {
+    .contact-list { list-style: none; padding: 0; }
+    .contact-list li {
       display: flex; align-items: center; gap: 12px;
-      font-size: 14px;
+      padding: 8px 0; font-size: 0.95rem;
     }
-    .contact-item i {
-      font-size: 18px; color: var(--primary); width: 24px; text-align: center;
-    }
+    .contact-list li i { font-size: 1.1rem; color: var(--primary); width: 24px; text-align: center; }
 
     /* ── Footer ── */
     footer {
-      padding: 24px 0; text-align: center;
-      color: var(--text-muted); font-size: 12px;
+      padding: 20px 0; text-align: center;
+      color: var(--text-muted); font-size: 0.8rem;
       border-top: 1px solid var(--border);
       margin-top: 24px;
     }
 
     /* ── Mobile ── */
     @media (max-width: 768px) {
-      .about-grid { grid-template-columns: 1fr; text-align: center; }
-      .about-photo-col { margin-bottom: 16px; }
-      .about-info-col h2 { text-align: center; }
-      .about-bio { text-align: left; }
-      .about-bottom { grid-template-columns: 1fr; text-align: left; }
-      .about-socials { justify-content: center; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .nav-links { gap: 12px; }
-      .nav-links a { font-size: 13px; }
+      .two-col { grid-template-columns: 1fr; }
+      .two-col .col-left { padding-right: 0; margin-bottom: 24px; }
+      .two-col .col-right { padding-left: 0; border-left: none; border-top: 1px solid var(--border); padding-top: 24px; }
+      .about-section .two-col { padding-top: 0; }
+      .about-section { padding-top: 70px; }
+      .exp-grid { grid-template-columns: 1fr; }
+      .exp-date { text-align: left; border-right: none; padding: 8px 0 0 0; }
+      .exp-date::after { display: none; }
+      .exp-detail { padding: 4px 0 16px 0; }
+      .honor-grid { grid-template-columns: 1fr; }
+      .honor-date-col { text-align: left; border-right: none; padding: 8px 0 0 0; }
+      .honor-date-col::after { display: none; }
+      .honor-detail { padding: 4px 0 12px 0; }
+      .nav-links a { padding: 14px 8px; font-size: 13px; }
       .nav-links a.hide-mobile { display: none; }
     }
   </style>
@@ -277,10 +308,10 @@
       <a class="nav-brand" href="#">Changwoo Baek</a>
       <div class="nav-links">
         <a href="#about">Home</a>
-        <a href="#publications">Publications</a>
+        <a href="#selected-publications">Publications</a>
         <a href="#experience">Experience</a>
         <a href="#honors" class="hide-mobile">Honors & Awards</a>
-        <a href="#teaching" class="hide-mobile">Teaching</a>
+        <a href="#teaching" class="hide-mobile">TA</a>
         <a href="#contact" class="hide-mobile">Contact</a>
         <button class="theme-btn" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
       </div>
@@ -288,10 +319,10 @@
   </nav>
 
   <div class="container">
-    <!-- About / Biography -->
+    <!-- ════════ About / Biography ════════ -->
     <section class="about-section" id="about">
-      <div class="about-grid">
-        <div class="about-photo-col">
+      <div class="two-col">
+        <div class="col-left">
           <img class="about-photo" src="profile.jpg" alt="Changwoo Baek" />
           <div class="about-name">Changwoo Baek</div>
           <div class="about-role">M.S. Student</div>
@@ -305,27 +336,19 @@
             <a href="https://www.linkedin.com/in/changwoo-baek-2b43332b6/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
           </div>
         </div>
-        <div class="about-info-col">
-          <h2>Biography</h2>
+        <div class="col-right">
+          <h1 class="bio-heading">Biography</h1>
           <div class="about-bio">
-            I'm a master's student in the Department of Electronics Engineering at
-            <a href="https://www.pusan.ac.kr/" target="_blank"><strong>Pusan National University</strong></a>,
-            working at <a href="https://cvsp.pusan.ac.kr/" target="_blank"><strong>CVSP Lab</strong></a>
-            under the supervision of Prof. <a href="https://cvsp.pusan.ac.kr/" target="_blank"><strong>Kyeongbo Kong</strong></a>.
-            My research focuses on hardware-efficient Multimodal Large Language Models (MLLMs).
+            I'm a master's student working on hardware-efficient Multimodal Large Language Models (MLLMs) in the Department of Electronics Engineering at
+            <a href="https://www.pusan.ac.kr/" target="_blank">Pusan National University</a>,
+            working at the <a href="https://cvsp.pusan.ac.kr/" target="_blank">CVSP Lab</a>
+            under the supervision of Prof. <a href="https://cvsp.pusan.ac.kr/" target="_blank">Kyeongbo Kong</a>.
             My goal is to make these models lightweight, fast, and reliable enough to run on edge devices (e.g. mobile, robotics).
-
-            <br /><br />
-            My current research focuses include:
-            <ul>
-              <li><strong>Visual Token Pruning:</strong> Reducing visual tokens for efficient MLLM inference.</li>
-              <li><strong>Knowledge Distillation:</strong> Compressing large models into smaller, efficient ones.</li>
-              <li><strong>KV Cache Compression:</strong> Efficient key-value cache management for LLMs.</li>
-              <li><strong>Robot Vision:</strong> Efficient architectures for robot vision systems.</li>
-            </ul>
+            I'm particularly interested in uncovering how MLLMs work internally, and in using that understanding to derive general principles rather than task-specific heuristics.
           </div>
-          <div class="about-bottom">
-            <div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+            <div class="about-sub">
               <h3>Interests</h3>
               <ul class="interest-list">
                 <li><i class="fas fa-chevron-right"></i> Visual Token Pruning</li>
@@ -335,21 +358,21 @@
                 <li><i class="fas fa-chevron-right"></i> Robot Vision</li>
               </ul>
             </div>
-            <div>
+            <div class="about-sub">
               <h3>Education</h3>
               <ul class="edu-list">
                 <li>
                   <i class="fas fa-graduation-cap"></i>
                   <div>
-                    <div class="edu-degree-name">M.S. in Electronic Engineering</div>
-                    <div class="edu-inst">Pusan National University (CVSP Lab, Advisor: Prof. Kyeongbo Kong)</div>
+                    <div class="edu-degree-name">M.S. in Electronics Engineering</div>
+                    <div class="edu-inst">Pusan National University</div>
                     <div class="edu-year">Mar 2025 &ndash; Present</div>
                   </div>
                 </li>
                 <li>
                   <i class="fas fa-graduation-cap"></i>
                   <div>
-                    <div class="edu-degree-name">B.S. in Electronic Engineering</div>
+                    <div class="edu-degree-name">B.S. in Electronics Engineering</div>
                     <div class="edu-inst">Pusan National University</div>
                     <div class="edu-year">Mar 2019 &ndash; Feb 2025</div>
                   </div>
@@ -361,175 +384,209 @@
       </div>
     </section>
 
-    <!-- Publications -->
-    <section class="section" id="publications">
-      <h2 class="section-title">Publications</h2>
+    <!-- ════════ Selected Publications ════════ -->
+    <section class="section" id="selected-publications">
+      <h2 class="section-title">Selected Publications</h2>
+      <p class="section-subtitle">* denotes equal contribution, &dagger; denotes corresponding author</p>
 
-      <h3 style="font-size:16px; color:var(--text-muted); margin-bottom:12px; margin-top:8px;">International Conferences</h3>
-
+      <!-- ICLR 2026 -->
       <div class="pub-item">
-        <a class="pub-title-link" href="https://openreview.net/forum?id=2NLkhPex1M" target="_blank">AgilePruner: An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning in Large Vision-Language Models</a>
-        <div class="pub-authors"><strong>C. Baek*</strong>, J. Song*, S. Kim*, K. Kong&dagger;</div>
-        <div class="pub-venue-name">ICLR 2026, Apr. 2026</div>
-        <div class="pub-buttons">
-          <a class="pub-btn" href="https://github.com/cvsp-lab/AgilePruner" target="_blank"><i class="fab fa-github"></i> Code</a>
-          <a class="pub-btn outline" href="https://openreview.net/forum?id=2NLkhPex1M" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
-        </div>
-      </div>
-      <div class="pub-item">
-        <a class="pub-title-link" href="#">Efficient Token Pruning for Vision-Language Models in Multi-turn Scenarios</a>
-        <div class="pub-authors"><strong>C. Baek*</strong>, S. Kim*, J. Song*, K. Kong&dagger;</div>
-        <div class="pub-venue-name">APCCAS 2025 (Oral)</div>
-      </div>
-      <div class="pub-item">
-        <a class="pub-title-link" href="https://ieeexplore.ieee.org/abstract/document/11137701/" target="_blank">Low-Light Face Recognition for Mobile Robots</a>
-        <div class="pub-authors"><strong>C. Baek</strong>, J. Song, K. Kong&dagger;</div>
-        <div class="pub-venue-name">ITC-CSCC, Jul. 2025</div>
-        <div class="pub-buttons">
-          <a class="pub-btn outline" href="https://ieeexplore.ieee.org/abstract/document/11137701/" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+        <div class="pub-content">
+          <span class="pub-venue-badge">ICLR 2026</span>
+          <a class="pub-title-link" href="https://openreview.net/forum?id=2NLkhPex1M" target="_blank">AgilePruner: An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning in Large Vision-Language Models</a>
+          <div class="pub-authors"><strong>C. Baek*</strong>, J. Song*, S. Kim*, K. Kong&dagger;</div>
+          <div class="pub-venue-text">International Conference on Learning Representations (ICLR), Apr. 2026</div>
+          <div class="pub-buttons">
+            <a class="pub-btn paper" href="https://openreview.net/forum?id=2NLkhPex1M" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+            <a class="pub-btn code" href="https://github.com/cvsp-lab/AgilePruner" target="_blank"><i class="fab fa-github"></i> Code</a>
+          </div>
         </div>
       </div>
 
-      <h3 style="font-size:16px; color:var(--text-muted); margin-bottom:12px; margin-top:24px;">International Journals</h3>
-
+      <!-- IEEE SPL -->
       <div class="pub-item">
-        <a class="pub-title-link" href="https://ieeexplore.ieee.org/document/11048580" target="_blank">Unsupervised Knowledge Distillation via Local Representations for Vision-Language Models</a>
-        <div class="pub-authors"><strong>C. Baek</strong>, J. Song, K. Kong&dagger;</div>
-        <div class="pub-venue-name">IEEE Signal Processing Letters, Aug. 2025</div>
-        <div class="pub-buttons">
-          <a class="pub-btn outline" href="https://ieeexplore.ieee.org/document/11048580" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+        <div class="pub-content">
+          <span class="pub-venue-badge journal">IEEE SPL</span>
+          <a class="pub-title-link" href="https://ieeexplore.ieee.org/document/11048580" target="_blank">Unsupervised Knowledge Distillation via Local Representations for Vision-Language Models</a>
+          <div class="pub-authors"><strong>C. Baek</strong>, J. Song, K. Kong&dagger;</div>
+          <div class="pub-venue-text">IEEE Signal Processing Letters, Aug. 2025</div>
+          <div class="pub-buttons">
+            <a class="pub-btn paper" href="https://ieeexplore.ieee.org/document/11048580" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+          </div>
         </div>
       </div>
 
-      <h3 style="font-size:16px; color:var(--text-muted); margin-bottom:12px; margin-top:24px;">Domestic</h3>
-
+      <!-- APCCAS 2025 -->
       <div class="pub-item">
-        <a class="pub-title-link" href="#">Visual Token Pruning Based on Entropy Dynamics in Vision Encoders of Multimodal LLMs</a>
-        <div class="pub-authors"><strong>C. Baek*</strong>, S. Kim*, J. Song*, K. Baek, K. Kong&dagger;</div>
-        <div class="pub-venue-name">KIBME Letters, 2026</div>
-      </div>
-      <div class="pub-item">
-        <a class="pub-title-link" href="https://koreascience.or.kr/article/JAKO202432057917753.page" target="_blank">Deep Learning-Based Face Recognition through Low-Light Enhancement</a>
-        <div class="pub-authors"><strong>C. Baek</strong>, K. Kong&dagger;</div>
-        <div class="pub-venue-name">IEMEK Journal, Oct. 2024</div>
-        <div class="pub-buttons">
-          <a class="pub-btn outline" href="https://koreascience.or.kr/article/JAKO202432057917753.page" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+        <div class="pub-content">
+          <span class="pub-venue-badge oral">APCCAS 2025 &middot; Oral</span>
+          <a class="pub-title-link" href="#">Efficient Token Pruning for Vision-Language Models in Multi-turn Scenarios</a>
+          <div class="pub-authors"><strong>C. Baek*</strong>, S. Kim*, J. Song*, K. Kong&dagger;</div>
+          <div class="pub-venue-text">Asia Pacific Conference on Circuits and Systems (APCCAS), 2025</div>
         </div>
       </div>
     </section>
 
-    <!-- Experience -->
+    <!-- ════════ Full Publications ════════ -->
+    <section class="section" id="publications">
+      <h2 class="section-title">Full Publications</h2>
+      <div class="callout">
+        <i class="fas fa-lightbulb"></i>&nbsp;
+        Quickly discover relevant content by <a href="https://scholar.google.co.kr/citations?user=4Xrc3r0AAAAJ&hl=ko&oi=ao" target="_blank">filtering publications</a>.
+      </div>
+
+      <h3 style="font-size:1rem; font-weight:700; color:var(--text); margin-bottom:16px;">International Conferences</h3>
+
+      <div class="pub-item">
+        <div class="pub-content">
+          <span class="pub-venue-badge">ICLR 2026</span>
+          <a class="pub-title-link" href="https://openreview.net/forum?id=2NLkhPex1M" target="_blank">AgilePruner: An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning in Large Vision-Language Models</a>
+          <div class="pub-authors"><strong>C. Baek*</strong>, J. Song*, S. Kim*, K. Kong&dagger;</div>
+          <div class="pub-venue-text">International Conference on Learning Representations (ICLR), Apr. 2026</div>
+          <div class="pub-buttons">
+            <a class="pub-btn paper" href="https://openreview.net/forum?id=2NLkhPex1M" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+            <a class="pub-btn code" href="https://github.com/cvsp-lab/AgilePruner" target="_blank"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-content">
+          <span class="pub-venue-badge oral">APCCAS 2025 &middot; Oral</span>
+          <a class="pub-title-link" href="#">Efficient Token Pruning for Vision-Language Models in Multi-turn Scenarios</a>
+          <div class="pub-authors"><strong>C. Baek*</strong>, S. Kim*, J. Song*, K. Kong&dagger;</div>
+          <div class="pub-venue-text">Asia Pacific Conference on Circuits and Systems (APCCAS), 2025</div>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-content">
+          <span class="pub-venue-badge">ITC-CSCC 2025</span>
+          <a class="pub-title-link" href="https://ieeexplore.ieee.org/abstract/document/11137701/" target="_blank">Low-Light Face Recognition for Mobile Robots</a>
+          <div class="pub-authors"><strong>C. Baek</strong>, J. Song, K. Kong&dagger;</div>
+          <div class="pub-venue-text">International Technical Conference on Circuits/Systems, Computers and Communications, Jul. 2025</div>
+          <div class="pub-buttons">
+            <a class="pub-btn paper" href="https://ieeexplore.ieee.org/abstract/document/11137701/" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size:1rem; font-weight:700; color:var(--text); margin:24px 0 16px;">International Journals</h3>
+
+      <div class="pub-item">
+        <div class="pub-content">
+          <span class="pub-venue-badge journal">IEEE SPL</span>
+          <a class="pub-title-link" href="https://ieeexplore.ieee.org/document/11048580" target="_blank">Unsupervised Knowledge Distillation via Local Representations for Vision-Language Models</a>
+          <div class="pub-authors"><strong>C. Baek</strong>, J. Song, K. Kong&dagger;</div>
+          <div class="pub-venue-text">IEEE Signal Processing Letters, Aug. 2025</div>
+          <div class="pub-buttons">
+            <a class="pub-btn paper" href="https://ieeexplore.ieee.org/document/11048580" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size:1rem; font-weight:700; color:var(--text); margin:24px 0 16px;">Domestic</h3>
+
+      <div class="pub-item">
+        <div class="pub-content">
+          <span class="pub-venue-badge domestic">KIBME 2026</span>
+          <a class="pub-title-link" href="#">Visual Token Pruning Based on Entropy Dynamics in Vision Encoders of Multimodal LLMs</a>
+          <div class="pub-authors"><strong>C. Baek*</strong>, S. Kim*, J. Song*, K. Baek, K. Kong&dagger;</div>
+          <div class="pub-venue-text">KIBME Letters, 2026</div>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-content">
+          <span class="pub-venue-badge domestic">IEMEK 2024</span>
+          <a class="pub-title-link" href="https://koreascience.or.kr/article/JAKO202432057917753.page" target="_blank">Deep Learning-Based Face Recognition through Low-Light Enhancement</a>
+          <div class="pub-authors"><strong>C. Baek</strong>, K. Kong&dagger;</div>
+          <div class="pub-venue-text">IEMEK Journal of Embedded Systems and Applications, Oct. 2024</div>
+          <div class="pub-buttons">
+            <a class="pub-btn paper" href="https://koreascience.or.kr/article/JAKO202432057917753.page" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════ Experience ════════ -->
     <section class="section" id="experience">
       <h2 class="section-title">Experience</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-title">Vision-Language Model for Home Robots</div>
-          <div class="timeline-org">Collaboration with LG Electronics</div>
-          <div class="timeline-meta">Jun 2025 &ndash; Present</div>
-          <div class="timeline-desc">Vision-language model technologies for home robots.</div>
+      <div class="exp-grid">
+        <div class="exp-date">Jun 2025 &ndash;<br>Present</div>
+        <div class="exp-detail">
+          <div class="exp-title">Vision-Language Model for Home Robots</div>
+          <div class="exp-org"><a href="https://www.lg.com/" target="_blank">Collaboration with LG Electronics</a></div>
+          <div class="exp-desc">Vision-language model technologies for home robots.</div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-title">Anomaly and Environment Detection for Robotics</div>
-          <div class="timeline-org">Collaboration with LG Electronics</div>
-          <div class="timeline-meta">Jun 2025 &ndash; Nov 2025</div>
-          <div class="timeline-desc">Anomaly and environment detection for robotics applications.</div>
+
+        <div class="exp-date">Jun &ndash; Nov<br>2025</div>
+        <div class="exp-detail">
+          <div class="exp-title">Anomaly and Environment Detection for Robotics</div>
+          <div class="exp-org"><a href="https://www.lg.com/" target="_blank">Collaboration with LG Electronics</a></div>
+          <div class="exp-desc">Anomaly and environment detection for robotics applications.</div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-title">Nighttime Detection and Face Recognition Enhancement</div>
-          <div class="timeline-org">Collaboration with LG Electronics</div>
-          <div class="timeline-meta">Dec 2023 &ndash; Dec 2024</div>
-          <div class="timeline-desc">Nighttime detection and face recognition enhancement for mobile robots.</div>
+
+        <div class="exp-date">Dec 2023 &ndash;<br>Dec 2024</div>
+        <div class="exp-detail">
+          <div class="exp-title">Nighttime Detection and Face Recognition</div>
+          <div class="exp-org"><a href="https://www.lg.com/" target="_blank">Collaboration with LG Electronics</a></div>
+          <div class="exp-desc">Nighttime detection and face recognition enhancement for mobile robots.</div>
         </div>
       </div>
     </section>
 
-    <!-- Honors & Awards -->
+    <!-- ════════ Honors & Awards ════════ -->
     <section class="section" id="honors">
       <h2 class="section-title">Honors and Awards</h2>
-      <ul class="honor-list">
-        <li>
-          <i class="fas fa-trophy honor-icon"></i>
-          <div>
-            <div class="honor-title">NRF Graduate Research Encouragement Scholarship</div>
-            <div class="honor-date">2025</div>
-          </div>
-        </li>
-        <li>
-          <i class="fas fa-trophy honor-icon"></i>
-          <div>
-            <div class="honor-title">Outstanding Award, Industrial AI Convergence Club</div>
-            <div class="honor-date">2024</div>
-          </div>
-        </li>
-      </ul>
+      <div class="honor-grid">
+        <div class="honor-date-col">2025</div>
+        <div class="honor-detail">
+          <div class="honor-title">NRF Graduate Research Encouragement Scholarship</div>
+          <div class="honor-org">National Research Foundation of Korea</div>
+        </div>
+        <div class="honor-date-col">2024</div>
+        <div class="honor-detail">
+          <div class="honor-title">Outstanding Award, Industrial AI Convergence Club</div>
+        </div>
+      </div>
     </section>
 
-    <!-- Teaching / TA Experience -->
+    <!-- ════════ TA Experience ════════ -->
     <section class="section" id="teaching">
       <h2 class="section-title">TA Experience</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-title">Teaching Assistant &mdash; C Programming [EE1600575]</div>
-          <div class="timeline-org">Pusan National University</div>
-          <div class="timeline-meta">Spring 2025</div>
+      <div class="exp-grid">
+        <div class="exp-date">Spring 2025</div>
+        <div class="exp-detail">
+          <div class="exp-title">Teaching Assistant &mdash; C Programming [EE1600575]</div>
+          <div class="exp-org">Pusan National University</div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-title">Teaching Assistant &mdash; Digital Circuits Laboratory [EE3100695]</div>
-          <div class="timeline-org">Pusan National University</div>
-          <div class="timeline-meta">Fall 2025</div>
+        <div class="exp-date">Fall 2025</div>
+        <div class="exp-detail">
+          <div class="exp-title">Teaching Assistant &mdash; Digital Circuits Laboratory [EE3100695]</div>
+          <div class="exp-org">Pusan National University</div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-title">Tutor &mdash; Signals and Systems</div>
-          <div class="timeline-org">Pusan National University</div>
-          <div class="timeline-meta">Fall 2023</div>
+        <div class="exp-date">Fall 2023</div>
+        <div class="exp-detail">
+          <div class="exp-title">Tutor &mdash; Signals and Systems</div>
+          <div class="exp-org">Pusan National University</div>
         </div>
       </div>
     </section>
 
-    <!-- Skills -->
-    <section class="section" id="skills">
-      <h2 class="section-title">Skills</h2>
-      <div class="skills-row">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">PyTorch</span>
-        <span class="skill-tag">C / C++</span>
-        <span class="skill-tag">ROS2</span>
-      </div>
-    </section>
-
-    <!-- Contact -->
+    <!-- ════════ Contact ════════ -->
     <section class="section" id="contact">
       <h2 class="section-title">Contact</h2>
-      <div class="contact-grid">
-        <div class="contact-item">
-          <i class="fas fa-envelope"></i>
-          <a href="mailto:higok18@pusan.ac.kr">higok18@pusan.ac.kr</a>
-        </div>
-        <div class="contact-item">
-          <i class="fab fa-github"></i>
-          <a href="https://github.com/higokri" target="_blank">github.com/higokri</a>
-        </div>
-        <div class="contact-item">
-          <i class="fab fa-linkedin"></i>
-          <a href="https://www.linkedin.com/in/changwoo-baek-2b43332b6/" target="_blank">LinkedIn</a>
-        </div>
-        <div class="contact-item">
-          <i class="ai ai-google-scholar"></i>
-          <a href="https://scholar.google.co.kr/citations?user=4Xrc3r0AAAAJ&hl=ko&oi=ao" target="_blank">Google Scholar</a>
-        </div>
-      </div>
+      <ul class="contact-list">
+        <li><i class="fas fa-envelope"></i> <a href="mailto:higok18@pusan.ac.kr">higok18@pusan.ac.kr</a></li>
+        <li><i class="fab fa-github"></i> <a href="https://github.com/higokri" target="_blank">github.com/higokri</a></li>
+        <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/changwoo-baek-2b43332b6/" target="_blank">LinkedIn</a></li>
+        <li><i class="ai ai-google-scholar"></i> <a href="https://scholar.google.co.kr/citations?user=4Xrc3r0AAAAJ&hl=ko&oi=ao" target="_blank">Google Scholar</a></li>
+        <li><i class="fas fa-map-marker-alt"></i> Busan, Republic of Korea</li>
+      </ul>
     </section>
   </div>
 
   <footer>
     <div class="container">
-      &copy; 2025 Changwoo Baek &middot; Powered by Changwoo Baek
+      &copy; 2025 Changwoo Baek
     </div>
   </footer>
 
